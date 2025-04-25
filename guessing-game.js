@@ -6,6 +6,7 @@ const rl = readline.createInterface({
 });
 
 let secretNumber;
+let numAttempts = 5;
 
 const checkGuess = (num) => {
 	if (Number(num) > secretNumber) {
@@ -31,7 +32,14 @@ const askGuess = () => {
 				console.log("You win!");
 				rl.close();
 			} else {
-				askGuess();
+				numAttempts--;
+				if (numAttempts === 0) {
+					console.log(`You lose! The number was ${secretNumber}`);
+					rl.close();
+				} else {
+					console.log(`You have ${numAttempts} attempts left`);
+					askGuess();
+				}
 			}
 		}
 	});
