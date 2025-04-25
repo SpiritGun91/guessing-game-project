@@ -43,6 +43,26 @@ const randomInRange = (min, max) => {
 	return Math.floor(Math.random() * (maxFloored - minCeiled)) + minCeiled;
 };
 
-secretNumber = randomInRange(1, 100);
+const askRange = () => {
+	rl.question("Enter a min number: ", (answer) => {
+		const min = Number.parseInt(answer);
+		if (Number.isNaN(min)) {
+			console.log("Invalid input");
+			askRange();
+		} else {
+			rl.question("Enter a max number: ", (max) => {
+				const maxNum = Number.parseInt(max);
+				if (Number.isNaN(maxNum) || maxNum <= min) {
+					console.log("Invalid input");
+					askRange();
+				} else {
+					secretNumber = randomInRange(min, maxNum);
+					console.log(`I'm thinking of a number between ${min} and ${maxNum}`);
+					askGuess();
+				}
+			});
+		}
+	});
+};
 
-askGuess();
+askRange();
