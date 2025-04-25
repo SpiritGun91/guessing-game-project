@@ -73,4 +73,18 @@ const askRange = () => {
 	});
 };
 
-askRange();
+const askLimit = () => {
+	rl.question("Enter a limit: ", (answer) => {
+		const limit = Number.parseInt(answer);
+		if (Number.isNaN(limit) || limit <= 0) {
+			console.log("Invalid input");
+			askLimit();
+		} else {
+			numAttempts = limit;
+			console.log(`You have ${numAttempts} attempts left`);
+			askRange();
+		}
+	});
+};
+
+askLimit();
