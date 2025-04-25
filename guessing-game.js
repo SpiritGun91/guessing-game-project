@@ -5,7 +5,7 @@ const rl = readline.createInterface({
 	output: process.stdout,
 });
 
-const secretNumber = 1;
+let secretNumber;
 
 const checkGuess = (num) => {
 	if (Number(num) > secretNumber) {
@@ -36,5 +36,13 @@ const askGuess = () => {
 		}
 	});
 };
+
+const randomInRange = (min, max) => {
+	const minCeiled = Math.ceil(min);
+	const maxFloored = Math.floor(max);
+	return Math.floor(Math.random() * (maxFloored - minCeiled)) + minCeiled;
+};
+
+secretNumber = randomInRange(1, 100);
 
 askGuess();
