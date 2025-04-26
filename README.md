@@ -5,7 +5,7 @@ This project implements a simple command-line number guessing game built with Ja
 
 ### Game Description
 
-The computer selects a random number within a specified range, and the player must guess it. After each guess, the program provides feedback whether the guess was too high, too low, or correct. The game continues until the player guesses correctly or decides to quit.
+The computer selects a random number within a specified range, and the player must guess it. After each guess, the program provides feedback whether the guess was too high, too low, or correct. The game continues until the player guesses correctly, decides to quit, or reaches the maximum number of allowed attempts.
 
 ### Features
 
@@ -13,6 +13,7 @@ The computer selects a random number within a specified range, and the player mu
 - User input validation
 - Guess tracking and feedback
 - Optional hint system
+- Limited number of attempts to increase challenge
 
 ### Technologies Used
 
