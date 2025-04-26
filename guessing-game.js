@@ -6,6 +6,7 @@ const rl = readline.createInterface({
 });
 
 let secretNumber;
+let numAttempts = 5;
 
 const checkGuess = (num) => {
 	if (Number(num) > secretNumber) {
@@ -31,7 +32,14 @@ const askGuess = () => {
 				console.log("You win!");
 				rl.close();
 			} else {
-				askGuess();
+				numAttempts--;
+				if (numAttempts === 0) {
+					console.log(`You lose! The number was ${secretNumber}`);
+					rl.close();
+				} else {
+					console.log(`You have ${numAttempts} attempts left`);
+					askGuess();
+				}
 			}
 		}
 	});
@@ -65,4 +73,18 @@ const askRange = () => {
 	});
 };
 
-askRange();
+const askLimit = () => {
+	rl.question("Enter a limit: ", (answer) => {
+		const limit = Number.parseInt(answer);
+		if (Number.isNaN(limit) || limit <= 0) {
+			console.log("Invalid input");
+			askLimit();
+		} else {
+			numAttempts = limit;
+			console.log(`You have ${numAttempts} attempts left`);
+			askRange();
+		}
+	});
+};
+
+askLimit();
